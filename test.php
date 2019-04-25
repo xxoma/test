@@ -20,14 +20,17 @@ function checkBracketsBalance($inputString = null): bool
     $stack = new \Ds\Stack();
 
     foreach (str_split($inputString) as $symbol) {
-        if ($symbol === '{' || $symbol === '(') {
+        if ($symbol === '{' || $symbol === '(' || $symbol === '[') {
             $stack->push($symbol);
         }
 
-        if ($symbol === '}' || $symbol === ')') {
+        if ($symbol === '}' || $symbol === ')' || $symbol === ']') {
             if (count($stack) > 0) {
                 $lastSymbol = $stack->peek();
-                if (($symbol === '}' && $lastSymbol === '{') || ($symbol == ')' && $lastSymbol === '(')) {
+                if (($symbol === '}' && $lastSymbol === '{')
+                    || ($symbol == ')' && $lastSymbol === '(')
+                    || ($symbol == ']' && $lastSymbol === '[')
+                ) {
                     $stack->pop();
                 }
             } else {
