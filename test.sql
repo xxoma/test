@@ -1,0 +1,1 @@
+SELECT id FROM `test` WHERE id IN (SELECT id FROM `test` GROUP BY id HAVING COUNT(*) > 1 );
